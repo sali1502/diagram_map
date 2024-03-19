@@ -1,0 +1,21 @@
+{
+  "name": "moment5",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "browserslist": ">0.5%, last 2 versions, not dead",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0",
+    "sharp": "^0.31.3"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.2"
+  }
+}
