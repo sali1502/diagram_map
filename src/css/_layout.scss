@@ -345,24 +345,30 @@ div {
 
 .chartFlex {
     display: flex;
-    justify-content: center;
+    max-width: 1512px;
     width: 100%;
+    justify-content: center;
     margin: 0 auto 0 auto;
 }
 
 .chartContainer1 {
-    width: 500px;
-    max-width: 100%;
+    max-width: 800px;
     margin: 0 auto 0 auto;
+    width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .chartContainer2 {
-    width: 350px;
-    max-width: 100%;
+    max-width: 520px;
+    width: 100%;
     margin: 0 auto 0 auto;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
-h2 { 
+
+h2 {
     font: 100% base.$font-stack;
     text-align: center;
     padding-top: 4vh;
@@ -461,69 +467,30 @@ h2 {
         margin-top: 40vh;
         @extend .threedot;
         animation: jumpingDot_mobile 6s 2s infinite alternate both linear;
+
     }
+}
+
+@media only screen and (max-width: 1024px) {
 
     .chartFlex {
         display: block;
-        width: 100%;
-        padding-left: 10vw;
-        padding-right: 10vw;
-        margin: 0 auto 0 auto;
-    }
-    
-    .chartContainer1 {
-        width: 100%;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        margin: 0 auto 0 auto;
-    }
-    
-    .chartContainer2 {
-        width: 100%;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        margin: 0 auto 0 auto;
-    }
-    
-    h2 { 
-        font: 100% base.$font-stack;
-        width: 100%;
-        padding-left: 5vw;
-        padding-right: 5vw;
-        padding-top: 4vh;
-        padding-bottom: 4vh;
-        margin: 0 auto 0 auto;
-
-    }
-    .chartFlex {
-        display: block;
+        width: 95%;
         justify-content: center;
-        width: 100%;
-        padding-left: 5vw;
-        padding-right: 5vw;
         margin: 0 auto 0 auto;
-
+        min-width: 350px;
     }
-    
+
     .chartContainer1 {
         width: 100%;
-        padding-left: 5vw;
-        padding-right: 5vw;
         margin: 0 auto 0 auto;
+        min-width: 350px;
     }
-    
+
     .chartContainer2 {
         width: 100%;
-        padding-left: 5vw;
-        padding-right: 5vw;
         margin: 0 auto 0 auto;
+        min-width: 350px;
     }
-    
-    h2 { 
-        font: 100% base.$font-stack;
-        text-align: center;
-        padding-top: 4vh;
-        padding-bottom: 4vh;
-        margin: 0 auto, 0 auto;
-    }
+
 }

@@ -39,21 +39,17 @@ async function getData() {
 
     const response = await fetch(url)
     const datapoints = await response.json()
-    //console.log(datapoints)
 
     /* Kurser */
 
     // Filtrera ut kurser
     const filteredCourse = datapoints.filter(obj => obj.type === 'Kurs');
-    // console.log('Filtrerade kurser:', filteredCourse);
 
     // Filtrera kurser i fallande ordning
     let sortedCourse = filteredCourse.sort((a, b) => b.applicantsTotal - a.applicantsTotal);
-    // console.log('Sorterade kurser:', sortedCourse);
 
     // Sortera ut de 6 mest sökta kurserna
     const top6Course = sortedCourse.slice(0, 6);
-    // console.log('Top 6 kurser:', top6Course)
 
     // Hämta namn på kurser
     courseName = top6Course.map((e) => e.name);
@@ -66,15 +62,12 @@ async function getData() {
 
     // Filtrera ut program
     const filteredProgram = datapoints.filter(obj => obj.type === 'Program');
-    // console.log('Filtrerade Program:', filteredProgram);
 
     // Filtrera program i fallande ordning
     let sortedProgram = filteredProgram.sort((a, b) => b.applicantsTotal - a.applicantsTotal);
-    // console.log('Sorterade program:', sortedProgram);
 
     // Sortera ut de 5 mest sökta programmen
     const top5Program = sortedProgram.slice(0, 5);
-    // console.log('Top 5 program:', top5Program)
 
     // Hämta programnamn
     programName = top5Program.map((e) => e.name);
@@ -89,6 +82,7 @@ async function displayBarChart() {
     await getData();
 
     const barChartEl = document.getElementById('barChart');
+
     new Chart(barChartEl, {
         type: 'bar',
         data: {
@@ -99,8 +93,11 @@ async function displayBarChart() {
                 borderWidth: 1
             }]
         },
-    });
 
+        options: {
+            indexAxis: "y"
+        }
+    });
 }
 
 displayBarChart();
