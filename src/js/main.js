@@ -6,18 +6,18 @@ import Chart from 'chart.js/auto';
 let openBtn = document.getElementById("open-menu");
 let closeBtn = document.getElementById("close-menu");
 
-//eventlyssnare
+// Eventlyssnare
 openBtn.addEventListener('click', toggleMenu);
 closeBtn.addEventListener('click', toggleMenu);
 
-//Toggla fram navigeringsmenyn
+// Toggla fram navigeringsmenyn
 function toggleMenu() {
     let navMenuEl = document.getElementById("nav-menu");
 
-    //hämtar in css för menyn
+    // Hämta in css för menyn
     let style = window.getComputedStyle(navMenuEl);
 
-    //koll om navigering är synlig eller ej, ändrar display block/none
+    // Koll om navigering är synlig eller ej, ändrar display block/none
     if (style.display === "none") {
         navMenuEl.style.display = "block";
     } else {
@@ -54,7 +54,7 @@ async function getData() {
     // Hämta namn på kurser
     courseName = top6Course.map((e) => e.name);
 
-    //Hämta ansökningstal på kurser
+    // Hämta ansökningstal på kurser
     courseApplicants = top6Course.map((e) => e.applicantsTotal);
 
 
@@ -72,7 +72,7 @@ async function getData() {
     // Hämta programnamn
     programName = top5Program.map((e) => e.name);
 
-    //Hämta ansökningstal för program
+    // Hämta ansökningstal för program
     programApplicants = top5Program.map((e) => e.applicantsTotal);
 }
 
@@ -123,6 +123,60 @@ async function displayPieChart() {
 }
 
 displayPieChart();
+
+
+/* Karta */
+    document.addEventListener('DOMContentLoaded', () => {
+
+    let searchInput = document.getElementById('searchInput');
+    let searchBtn = document.getElementById('searchBtn');
+    let map = L.map('map').setView([59.334, 18.063], 13);
+
+   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href=http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+    let marker; 
+    
+    async function searchLocation(query) {
+        const url = 'https://nominatim.openstreetmap.org/search?format=json&q=${query}';
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+               const { lat, lon } = data[0];
+               const coordinates = [lat, lon];
+                map.setView(coordinates, 15);
+
+                if (marker) {
+                   marker.setLatLng(coordinates);
+
+                } else {
+                  marker = L.marker(coordinates).addTo(map);
+                }
+
+           } else {
+                alert('Platsen kunde inte hittas...');
+            }
+
+        } catch (error) {
+        console.error('Något gick fel...', error);
+       }
+    }
+
+    searchBtn.addEventListener('click', () => {
+     const query = searchInput.value;
+        if (query.trim() !== "") {
+           searchLocation(query);
+       } else {
+           alert('Skriv in en plats i sökrutan...');
+       }
+   });
+});
+
 
 
 
