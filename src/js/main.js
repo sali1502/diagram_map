@@ -1,6 +1,6 @@
 "use strict";
 
-import Chart from 'chart.js/auto';
+import Chart from "chart.js/auto";
 
 // Hämta in meny-knapparna
 let openBtn = document.getElementById("open-menu");
@@ -34,7 +34,7 @@ let programName = [];
 let programApplicants = [];
 
 // Hämta JSON-data
-async function getData() {
+async function getData1() {
     const url = 'https://studenter.miun.se/~mallar/dt211g/';
 
     const response = await fetch(url)
@@ -57,6 +57,14 @@ async function getData() {
     // Hämta ansökningstal på kurser
     courseApplicants = top6Course.map((e) => e.applicantsTotal);
 
+}
+
+    // Hämta JSON-data
+    async function getData2() {
+    const url = 'https://studenter.miun.se/~mallar/dt211g/';
+
+    const response = await fetch(url)
+    const datapoints = await response.json()
 
     /*Program*/
 
@@ -79,7 +87,7 @@ async function getData() {
 
 // Utskrift av stapel-diagram
 async function displayBarChart() {
-    await getData();
+    await getData1();
 
     const barChartEl = document.getElementById('barChart');
 
@@ -105,7 +113,7 @@ displayBarChart();
 
 // Utskrift av cirkel-diagram
 async function displayPieChart() {
-    await getData();
+    await getData2();
 
     const barChartEl = document.getElementById('pieChart');
     new Chart(barChartEl, {
@@ -126,7 +134,7 @@ displayPieChart();
 
 
 /* Karta */
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     let searchInput = document.getElementById('searchInput');
     let searchBtn = document.getElementById('searchBtn');
@@ -137,8 +145,8 @@ displayPieChart();
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    let marker; 
-    
+    let marker;
+
     async function searchLocation(query) {
         const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}`;
 
@@ -147,34 +155,34 @@ displayPieChart();
             const data = await response.json();
 
             if (data && data.length > 0) {
-               const { lat, lon } = data[0];
-               const coordinates = [lat, lon];
+                const { lat, lon } = data[0];
+                const coordinates = [lat, lon];
                 map.setView(coordinates, 15);
 
                 if (marker) {
-                   marker.setLatLng(coordinates);
+                    marker.setLatLng(coordinates);
 
                 } else {
-                  marker = L.marker(coordinates).addTo(map);
+                    marker = L.marker(coordinates).addTo(map);
                 }
 
-           } else {
+            } else {
                 alert('Platsen kunde inte hittas...');
             }
 
         } catch (error) {
-        console.error('Något gick fel...', error);
-       }
+            console.error('Något gick fel...', error);
+        }
     }
 
     searchBtn.addEventListener('click', () => {
-     const query = searchInput.value;
+        const query = searchInput.value;
         if (query.trim() !== "") {
-           searchLocation(query);
-       } else {
-           alert('Skriv in en plats i sökrutan...');
-       }
-   });
+            searchLocation(query);
+        } else {
+            alert('Skriv in en plats i sökrutan...');
+        }
+    });
 });
 
 

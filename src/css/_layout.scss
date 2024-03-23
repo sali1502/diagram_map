@@ -305,7 +305,6 @@ div {
         padding-top: 6px;
         text-decoration: none;
     }
-
 }
 
 // Animering - element som ändrar färg
@@ -376,8 +375,8 @@ h2 {
     margin: 0 auto, 0 auto;
 }
 
-#map { 
-    height: 400px; 
+#map {
+    height: 400px;
 }
 
 /* Media querys */
@@ -400,7 +399,6 @@ h2 {
     .text {
         color: base.$primary-text-darkm !important;
     }
-
 }
 
 /* Större skärm - gör menyn som inline */
@@ -439,7 +437,6 @@ h2 {
         display: inline;
         padding: 1.2em 0;
     }
-
 }
 
 /* Visar en kolumn för litet läge, mobiltelefon */
@@ -471,7 +468,6 @@ h2 {
         margin-top: 40vh;
         @extend .threedot;
         animation: jumpingDot_mobile 6s 2s infinite alternate both linear;
-
     }
 }
 
@@ -497,4 +493,16 @@ h2 {
         min-width: 350px;
     }
 
+    // Karta för mindre skärm
+    #searchInput {
+        margin-top: 30vh;
+    }
+
+    #searchBtn {
+        margin-top: 30vh;
+    }
+
+    #map {
+        height: 400px;
+    }
 }
