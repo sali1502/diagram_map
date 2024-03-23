@@ -130,17 +130,17 @@ displayPieChart();
 
     let searchInput = document.getElementById('searchInput');
     let searchBtn = document.getElementById('searchBtn');
-    let map = L.map('map').setView([59.334, 18.063], 13);
+    let map = L.map('map').setView([59.32, 18.05], 13);
 
-   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href=http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
     let marker; 
     
     async function searchLocation(query) {
-        const url = 'https://nominatim.openstreetmap.org/search?format=json&q=${query}';
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}`;
 
         try {
             const response = await fetch(url);
