@@ -59,8 +59,8 @@ async function getData1() {
 
 }
 
-    // Hämta JSON-data
-    async function getData2() {
+// Hämta JSON-data
+async function getData2() {
     const url = 'https://studenter.miun.se/~mallar/dt211g/';
 
     const response = await fetch(url)
@@ -84,51 +84,9 @@ async function getData1() {
     programApplicants = top5Program.map((e) => e.applicantsTotal);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    async function displayBarChart() {
-        await getData1();
-
-        const barChartEl = document.getElementById('barChart');
-
-        new Chart(barChartEl, {
-            type: 'bar',
-            data: {
-                labels: courseName,
-                datasets: [{
-                    label: 'Antal sökande HT2023',
-                    data: courseApplicants,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                indexAxis: "y"
-            }
-        });
-    }
-
-    async function displayPieChart() {
-        await getData2();
-
-        const pieChartEl = document.getElementById('pieChart');
-        new Chart(pieChartEl, {
-            type: 'pie',
-            data: {
-                labels: programName,
-                datasets: [{
-                    label: 'Antal sökande HT2023',
-                    data: programApplicants,
-                    borderWidth: 1
-                }]
-            },
-        });
-    }
-
-    displayBarChart();
-    displayPieChart();
-});
 
 // Utskrift av stapel-diagram
-/* async function displayBarChart() {
+async function displayBarChart() {
     await getData1();
 
     const barChartEl = document.getElementById('barChart');
@@ -173,7 +131,7 @@ async function displayPieChart() {
 }
 
 displayPieChart();
-*/
+
 
 /* Karta */
 document.addEventListener('DOMContentLoaded', () => {
